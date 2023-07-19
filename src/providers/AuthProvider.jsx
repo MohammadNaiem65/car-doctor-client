@@ -4,6 +4,7 @@ import {
 	getAuth,
 	onAuthStateChanged,
 	signInWithEmailAndPassword,
+	signOut,
 } from 'firebase/auth';
 import app from '../firebase/firebase.config';
 
@@ -37,11 +38,19 @@ const AuthProvider = ({ children }) => {
 		};
 	}, []);
 
+	// Handle Log Out
+	const logOut = () => {
+		signOut(auth)
+			.then(() => {})
+			.catch((err) => console.log(err));
+	};
+
 	const authInfo = {
 		user,
 		loading,
 		createUser,
 		signIn,
+		logOut,
 	};
 
 	return (

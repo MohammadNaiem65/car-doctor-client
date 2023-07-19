@@ -4,19 +4,20 @@ import { useContext } from 'react';
 import { AuthContext } from '../../../providers/AuthProvider';
 
 const NavBar = () => {
-	const { user } = useContext(AuthContext);
+	const { user, logOut } = useContext(AuthContext);
 	const navItems = (
 		<>
 			<li>
-				<Link to='/'>Home</Link>{' '}
+				<Link to='/'>Home</Link>
 			</li>
 			<li>
-				{' '}
-				<Link to='/about'>About</Link>{' '}
+				<Link to='/about'>About</Link>
 			</li>
 			<li>
-				{' '}
-				<Link to='/'>Blog</Link>{' '}
+				<Link to='/bookings'>Bookings</Link>
+			</li>
+			<li>
+				<Link to='/'>Blog</Link>
 			</li>
 		</>
 	);
@@ -54,9 +55,16 @@ const NavBar = () => {
 			</div>
 			<div className='navbar-end'>
 				{user ? (
-					<p>{user.email}</p>
+					<div className='flex items-center gap-x-3'>
+						<p>{user.email}</p>
+						<button className='btn btn-accent' onClick={logOut}>
+							Log Out
+						</button>
+					</div>
 				) : (
-					<Link to='/login' className='btn btn-outline btn-success'>Login</Link>
+					<Link to='/login' className='btn btn-outline btn-success'>
+						Login
+					</Link>
 				)}
 
 				<button className='btn btn-outline btn-error ml-3'>

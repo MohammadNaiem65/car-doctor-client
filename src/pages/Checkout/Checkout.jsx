@@ -34,7 +34,9 @@ const Checkout = () => {
 			body: JSON.stringify(checkoutData),
 		})
 			.then((res) => res.json())
-			.then((data) => console.log(data));
+			.then((data) => {
+				if (data.insertedId) alert('Order placed.');
+			});
 	};
 	return (
 		<div className='card w-full my-10 flex-shrink-0 shadow-2xl bg-[#F3F3F3]'>
